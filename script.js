@@ -6,20 +6,34 @@ const questions = [
 ];
 const answers = ["skates", "apples", "textbooks", "towel"];
 
-document.write(randomArrayValue(questions, answers));
+document.write(generateResult(questions, answers));
 
-function randomArrayValue(questions, answers) {
+function generateResult(questions, answers) {
     let str = "";
-    let rand1 = 0;
-    let rand2 = 0;
     for (let i = 0; i < questions.length; i++) {
-        rand1 = getRandomInt(questions.length);
-        rand2 = getRandomInt(questions.length);
-        str += `${questions[rand1]} - ${answers[rand2]}<br>`;
+        str += `${randomArrayValue(questions)} - `;
+        let rand = getRandomInt(4);
+        for (let j = 0; j <= rand; j++) {
+            str += `${randomArrayValue(answers)}`;
+            if (rand !== j) {
+                str += ", ";
+            } else {
+                str += "<br>";
+            }
+        }
     }
     return str;
 }
 
 function getRandomInt(n) {
     return Math.floor(Math.random() * n);
+}
+
+function randomArrayValue(array) {
+    let str;
+    let rand = 0;
+    rand = getRandomInt(array.length);
+    str = array[rand];
+
+    return str;
 }
